@@ -33,3 +33,9 @@ if (input.value === "") {
 }
 input.value = "";
 });
+
+fastTrack.addEventListener ("click", () => {
+kön.unshift(input.value.toLowerCase());
+console.log(kön)
+
+})
