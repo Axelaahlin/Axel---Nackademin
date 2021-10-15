@@ -7,12 +7,11 @@ let underRubrik = document.querySelector("#underrubrik")
 // Pekar på alla HTML element. 
 
 let kön = [];
+underRubrik.innerText = "There's currently no people in line."
 //Skapar en tom array som ska motsvara kön. 
-underRubrik.innerText = "There's currently no people in line"
 
 add.addEventListener ("click", () => {
 kön.push(input.value.toLowerCase()); 
-console.log(kön);
 if (input.value === "") {
   alert("Vänligen skriv in ett namn.")
 } else {
@@ -20,11 +19,23 @@ if (input.value === "") {
   let listItemText = document.createElement("span");
   let checkainbutton = document.createElement("button");
   
-  checkainbutton.innerText = "Incheckad";
+  checkainbutton.innerText = "Checked in";
   listItemText.innerText = input.value;
 
-  checkainbutton.addEventListener("click", (e) => {
-  listItem.remove(); 
+  checkainbutton.addEventListener("click", (e) => { 
+   kön.forEach((person, index) => {
+    let listPerson = e.target.previousElementSibling.innerText;
+    kön.forEach ((person, index) => {
+      if (person === listPerson.toLowerCase()){
+        kön.splice(index,1);
+      }
+    })
+  })
+  listItem.remove();  
+  console.log(kön.length)
+  if (kön.length < 1) {
+    underRubrik.innerText = "There's currently no people in line"
+  }
   });
   //Eventlistener som tar bort från listan.
   
@@ -32,17 +43,16 @@ if (input.value === "") {
   listItem.appendChild(listItemText);
   listItem.appendChild(checkainbutton);
   //Appendar alla element.
+  if (kön.length >= 1){
+    underRubrik.innerText = "The queue:"
+   } 
+  
 }
 input.value = "";
-if (kön.length >= 1){
-  underRubrik.innerText = "The queue:"
-} 
 });
 
 fastTrack.addEventListener ("click", () => {
 kön.unshift(input.value.toLowerCase());
-console.log(kön)
-
 if (input.value === "") {
   alert("Vänligen skriv in ett namn.")
 } else {
@@ -50,11 +60,23 @@ if (input.value === "") {
   let listItemText = document.createElement("span");
   let checkainbutton = document.createElement("button");
   
-  checkainbutton.innerText = "Incheckad";
+  checkainbutton.innerText = "checked in";
   listItemText.innerText = input.value;
   
-  checkainbutton.addEventListener("click", (e) => {
-  listItem.remove(); 
+  checkainbutton.addEventListener("click", (e) => { 
+    kön.forEach((person, index) => {
+      let listPerson = e.target.previousElementSibling.innerText;
+      kön.forEach ((person, index) => {
+        if (person === listPerson.toLowerCase()){
+          kön.splice(index,1);
+        }
+      })
+    })
+    listItem.remove(); 
+    console.log(kön.length)
+    if (kön.length < 1) {
+      underRubrik.innerText = "There's currently no people in line"
+    }
   });
   //Eventlistener som tar bort från listan.
   
@@ -62,13 +84,12 @@ if (input.value === "") {
   listItem.appendChild(listItemText);
   listItem.appendChild(checkainbutton);
   //Appendar alla element.
+  if (kön.length >= 1){
+    underRubrik.innerText = "The queue:"
+   } 
 }
 input.value = "";
-if (kön.length >= 1){
-  underRubrik.innerText = "The queue:"
-} 
 });
 
 
-console.log(kön)
 
