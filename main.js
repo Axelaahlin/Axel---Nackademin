@@ -3,10 +3,12 @@ let add = document.querySelector("#add")
 let fastTrack = document.querySelector("#fastTrack")
 let container = document.querySelector("#container")
 let lista = document.querySelector("#listan")
+let underRubrik = document.querySelector("#underrubrik")
 // Pekar på alla HTML element. 
 
 let kön = [];
 //Skapar en tom array som ska motsvara kön. 
+underRubrik.innerText = "There's currently no people in line"
 
 add.addEventListener ("click", () => {
 kön.push(input.value.toLowerCase()); 
@@ -20,7 +22,7 @@ if (input.value === "") {
   
   checkainbutton.innerText = "Incheckad";
   listItemText.innerText = input.value;
-  
+
   checkainbutton.addEventListener("click", (e) => {
   listItem.remove(); 
   });
@@ -32,6 +34,9 @@ if (input.value === "") {
   //Appendar alla element.
 }
 input.value = "";
+if (kön.length >= 1){
+  underRubrik.innerText = "The queue:"
+} 
 });
 
 fastTrack.addEventListener ("click", () => {
@@ -59,7 +64,11 @@ if (input.value === "") {
   //Appendar alla element.
 }
 input.value = "";
-
-
-
+if (kön.length >= 1){
+  underRubrik.innerText = "The queue:"
+} 
 });
+
+
+console.log(kön)
+
