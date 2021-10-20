@@ -23,7 +23,7 @@ if (input.value === "") {
   listItemText.innerText = input.value;
 
   checkainbutton.addEventListener("click", (e) => { 
-   kön.forEach((person, index) => {
+   kön.forEach(() => {
     let listPerson = e.target.previousElementSibling.innerText;
     kön.forEach ((person, index) => {
       if (person === listPerson.toLowerCase()){
@@ -46,7 +46,6 @@ if (input.value === "") {
   if (kön.length >= 1){
     underRubrik.innerText = "The queue:"
    } 
-  
 }
 input.value = "";
 });
@@ -64,7 +63,7 @@ if (input.value === "") {
   listItemText.innerText = input.value;
   
   checkainbutton.addEventListener("click", (e) => { 
-    kön.forEach((person, index) => {
+    kön.forEach(() => {
       let listPerson = e.target.previousElementSibling.innerText;
       kön.forEach ((person, index) => {
         if (person === listPerson.toLowerCase()){
@@ -74,7 +73,7 @@ if (input.value === "") {
     })
     listItem.remove(); 
     console.log(kön.length)
-    if (kön.length < 1) {
+    if (kön.length < 1) { 
       underRubrik.innerText = "There's currently no people in line"
     }
   });
